@@ -1,117 +1,151 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
-    
     body {
-        @apply font-[sans-serif];
+        font-family: sans-serif;
     }
 
     ::-webkit-scrollbar {
-        @apply w-2.5 h-2.5;
+        width: 0.625rem;
+        height: 0.625rem;
     }
 
     ::-webkit-scrollbar-track {
-        @apply bg-gray-200;
+        background-color: rgb(229 231 235);
     }
 
     ::-webkit-scrollbar-thumb {
-        @apply bg-fuchsia-600;
+        background-color: rgb(192 38 211);
     }
 
     ::-webkit-scrollbar-thumb:hover {
-        @apply bg-fuchsia-700;
+        background-color: rgb(147 51 234);
     }
 
-    textarea, input:focus {
-        @apply focus:outline-none;
+    textarea:focus,
+    input:focus {
+        outline: none;
     }
 
-    .ul-padding{
+    .ul-padding {
         padding-inline-start: 0.9rem;
     }
 
-    .ul-padding-none{
+    .ul-padding-none {
         padding-inline-start: 0;
     }
 }
 
-@layer components{
-    .pi{
-        @apply p-2 mb-2 text-black bg-white rounded text-[0.9rem];
-    }
-
-    .profileInput{
-        @apply pi file:border-0 file:bg-fuchsia-500 file:text-white file:rounded-sm;
-    }
-
-    .flex-col-gap-2{
-        @apply flex flex-col gap-2;
-    }
-
-    .flex-wrap-gap-2{
-        @apply flex flex-wrap gap-2;
-    }
-
-    .other-input{
-        @apply p-2 mb-2 text-black bg-white rounded focus:placeholder-transparent;
-    }
-
-    .input-title{
-        @apply text-[1rem] text-white font-semibold;
-    }
-
-    .f-col{
-        @apply flex flex-col;
-    }
-
-    .grid-4{
-        @apply grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4;
-    }
-
-    .editable{
-        @apply hover:bg-gray-100 hover:cursor-text outline-none;
-    }
-
+.pi {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
 }
 
-.name{
+.profileInput {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.profileInput input[type="file"] {
+    border: 0;
+    background-color: rgb(217 70 239);
+    color: white;
+    border-radius: 0.125rem;
+}
+
+.flex-col-gap-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.flex-wrap-gap-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.other-input {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem;
+}
+
+.other-input:focus::placeholder {
+    color: transparent;
+}
+
+.input-title {
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+}
+
+.f-col {
+    display: flex;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.editable:hover {
+    background-color: rgb(243 244 246);
+    cursor: text;
+}
+
+.editable {
+    outline: none;
+}
+
+.name {
     font-size: 20px;
     font-weight: 700;
 }
 
-.profession{
+.profession {
     font-size: 16px;
     font-weight: 500;
 }
 
-.contact{
+.contact {
     font-size: 14px;
     font-weight: 400;
 }
 
-.social-media{
+.social-media {
     font-size: 12px;
     font-weight: 400;
 }
 
-.section-title{
+.section-title {
     font-size: 16px;
     font-weight: 700;
 }
 
-.content{
+.content {
     font-size: 14px;
     font-weight: 400;
 }
 
-.sub-content{
+.sub-content {
     font-size: 12px;
     font-weight: 400;
 }
 
-.i-bold{
+.i-bold {
     font-weight: 700 !important;
 }
 

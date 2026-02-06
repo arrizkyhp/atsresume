@@ -1,45 +1,48 @@
-"use client"
+"use client";
 
-import React, {createContext, useState} from "react";
+import React, { createContext, useState, ChangeEvent } from "react";
 import Meta from "../components/meta/Meta";
 import FormCloseOpenBtn from "../components/FormCloseOpenBtn";
 import Preview from "../components/preview/ui/Preview";
 import DefaultResumeData from "../components/utility/DefaultResumeData";
 import dynamic from "next/dynamic";
 import Form from "../components/form/ui/Form";
+import type { ResumeData, ResumeContextType } from "../types/resume";
 
-const ResumeContext = createContext(DefaultResumeData);
+const ResumeContext = createContext<ResumeContextType>({
+  resumeData: DefaultResumeData,
+  setResumeData: () => {},
+  handleProfilePicture: () => {},
+  handleChange: () => {},
+});
 
 // server side rendering false
 const Print = dynamic(() => import("../components/utility/WinPrint"), {
   ssr: false,
 });
 
-export default function Builder() {
+const Builder: React.FC = () => {
   // resume data
-  const [resumeData, setResumeData] = useState(DefaultResumeData);
+  const [resumeData, setResumeData] = useState<ResumeData>(DefaultResumeData);
 
   // form hide/show
-  const [formClose, setFormClose] = useState(false);
+  const [formClose, setFormClose] = useState<boolean>(false);
 
   // profile picture
-  const handleProfilePicture = (e) => {
-    const file = e.target.files[0];
+  const handleProfilePicture = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
 
     if (file instanceof Blob) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setResumeData({...resumeData, profilePicture: event.target.result});
+        setResumeData({ ...resumeData, profilePicture: event.target?.result as string });
       };
       reader.readAsDataURL(file);
-    } else {
-      console.error("Invalid file type");
     }
   };
 
-  const handleChange = (e) => {
-    setResumeData({...resumeData, [e.target.name]: e.target.value});
-    console.log(resumeData);
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setResumeData({ ...resumeData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -59,14 +62,16 @@ export default function Builder() {
         />
         <div className="f-col gap-4 md:flex-row justify-evenly max-w-7xl md:mx-auto md:h-screen">
           {!formClose && (
-            <Form/>
+            <Form />
           )}
-          <Preview/>
+          <Preview />
         </div>
-        <FormCloseOpenBtn formClose={formClose} setFormClose={setFormClose}/>
-        <Print/>
+        <FormCloseOpenBtn formClose={formClose} setFormClose={setFormClose} />
+        <Print />
       </ResumeContext.Provider>
     </>
   );
-}
-export {ResumeContext};
+};
+
+export default Builder;
+export { ResumeContext };
