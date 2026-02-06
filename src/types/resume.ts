@@ -48,6 +48,7 @@ export interface ResumeData {
   skills: SkillType[];
   languages: string[];
   certifications: string[];
+  tools: string[];
 }
 
 export interface ResumeContextType {

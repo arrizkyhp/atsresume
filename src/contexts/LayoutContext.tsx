@@ -21,6 +21,7 @@ export const LayoutProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     workExperience: true,
     projects: true,
     skills: true,
+    tools: true,
     languages: true,
     certifications: true,
   });

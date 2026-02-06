@@ -21,6 +21,7 @@ const LayoutControlPanel: React.FC = () => {
     { key: 'workExperience', label: 'Work Experience', icon: '💼' },
     { key: 'projects', label: 'Projects', icon: '🚀' },
     { key: 'skills', label: 'Skills', icon: '⚡' },
+    { key: 'tools', label: 'Tools', icon: '🔧' },
     { key: 'languages', label: 'Languages', icon: '🌍' },
     { key: 'certifications', label: 'Certifications', icon: '📜' },
   ];

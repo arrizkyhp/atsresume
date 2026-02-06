@@ -76,6 +76,13 @@ const PDFLeftSide = ({ resumeData, sectionVisibility }: PDFLeftSideProps) => {
         </View>
       )}
 
+      {sectionVisibility.tools && resumeData.tools.length > 0 && (
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Tools</Text>
+          <Text style={styles.content}>{resumeData.tools.join(', ')}</Text>
+        </View>
+      )}
+
       {sectionVisibility.languages && resumeData.languages.length > 0 && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Languages</Text>

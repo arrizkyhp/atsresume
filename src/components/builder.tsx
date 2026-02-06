@@ -19,11 +19,6 @@ const ResumeContext = createContext<ResumeContextType>({
   handleChange: () => {},
 });
 
-// server side rendering false
-const Print = dynamic(() => import("../components/utility/WinPrint"), {
-  ssr: false,
-});
-
 const Builder: React.FC = () => {
   // resume data
   const [resumeData, setResumeData] = useState<ResumeData>(DefaultResumeData);
@@ -76,7 +71,6 @@ const Builder: React.FC = () => {
           </div>
         </LayoutProvider>
         <FormCloseOpenBtn formClose={formClose} setFormClose={setFormClose} />
-        <Print />
       </ResumeContext.Provider>
     </>
   );

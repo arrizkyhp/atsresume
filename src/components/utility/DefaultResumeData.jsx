@@ -119,6 +119,15 @@ const DefaultResumeData = {
   languages: ["Indonesian", "English"],
 
   certifications: [],
+
+  tools: [
+    "WebStorm",
+    "VSCode + Cline",
+    "Figma",
+    "Adobe XD",
+    "Postman",
+    "Adobe Photoshop"
+  ],
 };
 
 export default DefaultResumeData;
