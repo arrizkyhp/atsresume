@@ -23,7 +23,7 @@ const WorkExperience: React.FC<{ item: any; index: number }> = ({ item, index })
     <div
       ref={setNodeRef}
       style={style}
-      className={isDragging ? "outline-dashed outline-2 outline-gray-400 bg-white" : ""}
+      className={`work-experience-item ${isDragging ? "outline-dashed outline-2 outline-gray-400 bg-white" : ""}`}
     >
       <div
         {...attributes}

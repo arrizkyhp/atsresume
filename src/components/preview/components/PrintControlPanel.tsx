@@ -1,15 +1,46 @@
 import { useLayout } from '../../../contexts/LayoutContext';
+import { ResumeContext } from '../../builder';
 import { 
   FaPrint, 
-  FaFilePdf
+  FaFilePdf,
+  FaDownload
 } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { pdf } from '@react-pdf/renderer';
+import ResumePDF from '../../pdf/ResumePDF';
 
 const PrintControlPanel: React.FC = () => {
   const { layoutMode, sectionVisibility, fontSizeScale, toggleSectionVisibility } = useLayout();
+  const { resumeData } = useContext(ResumeContext);
   const [isExpanded, setIsExpanded] = useState(false);
   const [pageCount, setPageCount] = useState(1);
   const [fitsOnePage, setFitsOnePage] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    setIsGenerating(true);
+    try {
+      const doc = (
+        <ResumePDF
+          resumeData={resumeData}
+          sectionVisibility={sectionVisibility}
+          layoutMode={layoutMode}
+        />
+      );
+      const asPdf = pdf(doc);
+      const blob = await asPdf.toBlob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${resumeData.name.replace(/\s+/g, '_')}_resume.pdf`;
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   // Calculate page count and fit status
   useEffect(() => {
@@ -81,12 +112,22 @@ const PrintControlPanel: React.FC = () => {
             </button>
           </div>
 
+          {/* Download PDF Button */}
+          <button
+            onClick={handleDownloadPDF}
+            disabled={isGenerating}
+            className="w-full px-3 py-3 bg-blue-600 text-white rounded font-semibold hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <FaDownload className="inline mr-2" />
+            {isGenerating ? 'Generating...' : 'Download PDF'}
+          </button>
+
           {/* Print Button */}
           <button
             onClick={() => window.print()}
-            className="w-full px-3 py-3 bg-green-600 text-white rounded font-semibold hover:bg-green-700 transition-all"
+            className="w-full px-3 py-3 bg-green-600 text-white rounded font-semibold hover:bg-green-700 transition-all mt-2"
           >
-            <FaFilePdf className="inline mr-2" /> Print PDF
+            <FaFilePdf className="inline mr-2" /> Print (Browser)
           </button>
 
           {/* Close Button */}

@@ -8,7 +8,7 @@ const WorkExperiences: React.FC = () => {
 
   return (
     <SortableContext items={resumeData.workExperience.map((_, index) => `WORK_EXPERIENCE-${index}`)} strategy={verticalListSortingStrategy}>
-      <div>
+      <div className="work-experience-container">
         <h2
           className="section-title mb-1 border-b-2 border-gray-300 editable"
           contentEditable

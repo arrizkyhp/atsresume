@@ -24,7 +24,7 @@ const Project: React.FC<{ item: any; index: number }> = ({ item, index }) => {
     <div
       ref={setNodeRef}
       style={style}
-      className={isDragging ? "outline-dashed outline-2 outline-gray-400 bg-white" : ""}
+      className={`project-item ${isDragging ? "outline-dashed outline-2 outline-gray-400 bg-white" : ""}`}
     >
       <div
         {...attributes}

@@ -90,7 +90,7 @@ const Preview: React.FC = () => {
 
   return (
     <div 
-      className="sticky top-0 preview md:overflow-y-scroll md:h-screen p-6"
+      className="sticky top-0 preview md:overflow-y-scroll md:h-screen"
       style={{ fontSize: `${fontSizeScale}%` }}
     >
       <A4PageWrapper>
@@ -99,9 +99,7 @@ const Preview: React.FC = () => {
           <Header resumeData={resumeData} icons={icons} />
           <div className={getLayoutClasses()}>
             <LeftSide resumeData={resumeData} sectionVisibility={sectionVisibility} className={getLeftSideClasses()} />
-            {sectionVisibility.workExperience && (
-              <RightSide resumeData={resumeData} sectionVisibility={sectionVisibility} className={getRightSideClasses()} />
-            )}
+            <RightSide resumeData={resumeData} sectionVisibility={sectionVisibility} className={getRightSideClasses()} />
           </div>
         </DndContext>
       </A4PageWrapper>

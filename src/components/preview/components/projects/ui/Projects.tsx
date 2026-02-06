@@ -8,7 +8,7 @@ const Projects: React.FC = () => {
 
   return (
     <SortableContext items={resumeData.projects.map((_, index) => `PROJECTS-${index}`)} strategy={verticalListSortingStrategy}>
-      <div>
+      <div className="projects-container">
         <h2
           className="section-title mb-1 border-b-2 border-gray-300 editable"
           contentEditable

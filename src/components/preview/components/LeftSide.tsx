@@ -12,7 +12,7 @@ const LeftSide: React.FC<{ resumeData: ResumeData; sectionVisibility: Record<str
   return (
     <div className={`${className} space-y-2`}>
       {sectionVisibility.summary && resumeData.summary.length > 0 && (
-        <div className="mb-1">
+        <div className="mb-1 summary-section">
           <h2 className="section-title mb-1 border-b-2 border-gray-300">
             Summary
           </h2>
@@ -21,12 +21,12 @@ const LeftSide: React.FC<{ resumeData: ResumeData; sectionVisibility: Record<str
       )}
 
       {sectionVisibility.education && resumeData.education.length > 0 && (
-        <div className="mb-1 education-item">
+        <div className="education-section">
           <h2 className="section-title mb-1 border-b-2 border-gray-300">
             Education
           </h2>
           {resumeData.education.map((item: any, index: number) => (
-            <div key={index} className="mb-1">
+            <div key={index} className="education-item">
               <p className="content i-bold">{item.degree}</p>
               <p className="content">{item.school}</p>
               <DateRange
@@ -40,24 +40,31 @@ const LeftSide: React.FC<{ resumeData: ResumeData; sectionVisibility: Record<str
       )}
 
       {sectionVisibility.skills && (
-        <SortableContext items={resumeData.skills.map((_: any, index: number) => `SKILLS-${index}`)} strategy={verticalListSortingStrategy}>
-          <div>
-            {resumeData.skills.map((skill: any, index: number) => (
-              <SkillItem key={`SKILLS-${index}`} skill={skill} index={index} />
-            ))}
-          </div>
-        </SortableContext>
+        <div className="skills-section">
+          <h2 className="section-title mb-1 border-b-2 border-gray-300">Skills</h2>
+          <SortableContext items={resumeData.skills.map((_: any, index: number) => `SKILLS-${index}`)} strategy={verticalListSortingStrategy}>
+            <div>
+              {resumeData.skills.map((skill: any, index: number) => (
+                <SkillItem key={`SKILLS-${index}`} skill={skill} index={index} />
+              ))}
+            </div>
+          </SortableContext>
+        </div>
       )}
 
       {sectionVisibility.languages && (
-        <Language title="Languages" languages={resumeData.languages} />
+        <div className="languages-section">
+          <Language title="Languages" languages={resumeData.languages} />
+        </div>
       )}
       
       {sectionVisibility.certifications && (
-        <Certification
-          title="Certifications"
-          certifications={resumeData.certifications}
-        />
+        <div className="certifications-section">
+          <Certification
+            title="Certifications"
+            certifications={resumeData.certifications}
+          />
+        </div>
       )}
     </div>
   );

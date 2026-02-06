@@ -5,10 +5,14 @@ const RightSide = ({resumeData, sectionVisibility, className = ''}: { resumeData
   return (
     <div className={`space-y-2 ${className}`}>
       {sectionVisibility?.workExperience && resumeData.workExperience.length > 0 && (
-        <WorkExperiences/>
+        <div className="work-experience-container">
+          <WorkExperiences/>
+        </div>
       )}
       {sectionVisibility?.projects && resumeData.projects.length > 0 && (
-        <Projects/>
+        <div className="projects-container">
+          <Projects/>
+        </div>
       )}
     </div>
   );
