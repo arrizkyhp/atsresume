@@ -16,9 +16,11 @@ import LeftSide from "../components/LeftSide";
 import RightSide from "../components/RightSide";
 import A4PageWrapper from "../components/A4PageWrapper";
 import { onDragEndHandler } from "../utils/onDragEndHandler";
+import { useLayout } from '../../../contexts/LayoutContext';
 
 const Preview: React.FC = () => {
   const { resumeData, setResumeData } = useContext(ResumeContext);
+  const { layoutMode, sectionVisibility, fontSizeScale } = useLayout();
 
   const icons = useMemo(
     () => [
@@ -51,16 +53,55 @@ const Preview: React.FC = () => {
     onDragEndHandler(event, resumeData, setResumeData);
   };
 
+  const getLayoutClasses = () => {
+    switch (layoutMode) {
+      case 'full-width':
+        return 'grid grid-cols-1 gap-4';
+      case 'two-column':
+        return 'grid grid-cols-2 gap-6';
+      case 'three-column':
+      default:
+        return 'grid grid-cols-3 gap-6';
+    }
+  };
+
+  const getLeftSideClasses = () => {
+    switch (layoutMode) {
+      case 'full-width':
+      case 'two-column':
+        return 'col-span-1';
+      case 'three-column':
+      default:
+        return 'col-span-1';
+    }
+  };
+
+  const getRightSideClasses = () => {
+    switch (layoutMode) {
+      case 'full-width':
+        return 'col-span-1';
+      case 'two-column':
+        return 'col-span-1';
+      case 'three-column':
+      default:
+        return 'col-span-2';
+    }
+  };
+
   return (
-    <div className="md:max-w-[60%] sticky top-0 preview rm-padding-print p-6 md:overflow-y-scroll md:h-screen">
+    <div 
+      className="sticky top-0 preview md:overflow-y-scroll md:h-screen p-6"
+      style={{ fontSize: `${fontSizeScale}%` }}
+    >
       <A4PageWrapper>
         <ModalHighlightMenu />
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
           <Header resumeData={resumeData} icons={icons} />
-          <hr className="border-dashed my-2" />
-          <div className="grid grid-cols-3 gap-6">
-            <LeftSide resumeData={resumeData} />
-            <RightSide resumeData={resumeData} />
+          <div className={getLayoutClasses()}>
+            <LeftSide resumeData={resumeData} sectionVisibility={sectionVisibility} className={getLeftSideClasses()} />
+            {sectionVisibility.workExperience && (
+              <RightSide resumeData={resumeData} sectionVisibility={sectionVisibility} className={getRightSideClasses()} />
+            )}
           </div>
         </DndContext>
       </A4PageWrapper>

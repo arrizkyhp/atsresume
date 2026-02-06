@@ -6,11 +6,12 @@ import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import React from 'react';
+import type { ResumeData } from '../../../types/resume';
 
-const LeftSide: React.FC<{ resumeData: any }> = ({ resumeData }) => {
+const LeftSide: React.FC<{ resumeData: ResumeData; sectionVisibility: Record<string, boolean>; className?: string }> = ({ resumeData, sectionVisibility, className = '' }) => {
   return (
-    <div className="col-span-1 space-y-2">
-      {resumeData.summary.length > 0 && (
+    <div className={`${className} space-y-2`}>
+      {sectionVisibility.summary && resumeData.summary.length > 0 && (
         <div className="mb-1">
           <h2 className="section-title mb-1 border-b-2 border-gray-300">
             Summary
@@ -19,8 +20,8 @@ const LeftSide: React.FC<{ resumeData: any }> = ({ resumeData }) => {
         </div>
       )}
 
-      {resumeData.education.length > 0 && (
-        <div className="mb-1">
+      {sectionVisibility.education && resumeData.education.length > 0 && (
+        <div className="mb-1 education-item">
           <h2 className="section-title mb-1 border-b-2 border-gray-300">
             Education
           </h2>
@@ -38,19 +39,26 @@ const LeftSide: React.FC<{ resumeData: any }> = ({ resumeData }) => {
         </div>
       )}
 
-      <SortableContext items={resumeData.skills.map((_: any, index: number) => `SKILLS-${index}`)} strategy={verticalListSortingStrategy}>
-        <div>
-          {resumeData.skills.map((skill: any, index: number) => (
-            <SkillItem key={`SKILLS-${index}`} skill={skill} index={index} />
-          ))}
-        </div>
-      </SortableContext>
+      {sectionVisibility.skills && (
+        <SortableContext items={resumeData.skills.map((_: any, index: number) => `SKILLS-${index}`)} strategy={verticalListSortingStrategy}>
+          <div>
+            {resumeData.skills.map((skill: any, index: number) => (
+              <SkillItem key={`SKILLS-${index}`} skill={skill} index={index} />
+            ))}
+          </div>
+        </SortableContext>
+      )}
 
-      <Language title="Languages" languages={resumeData.languages} />
-      <Certification
-        title="Certifications"
-        certifications={resumeData.certifications}
-      />
+      {sectionVisibility.languages && (
+        <Language title="Languages" languages={resumeData.languages} />
+      )}
+      
+      {sectionVisibility.certifications && (
+        <Certification
+          title="Certifications"
+          certifications={resumeData.certifications}
+        />
+      )}
     </div>
   );
 };
@@ -77,7 +85,7 @@ const SkillItem: React.FC<{ skill: any; index: number }> = ({ skill, index }) =>
       style={style}
       {...attributes}
       {...listeners}
-      className={isDragging ? "outline-dashed outline-2 outline-gray-400 bg-white" : ""}
+      className={`skill-item ${isDragging ? "outline-dashed outline-2 outline-gray-400 bg-white" : ""}`}
     >
       <Skills title={skill.title} skills={skill.skills} />
     </div>

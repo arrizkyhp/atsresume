@@ -150,31 +150,127 @@
 }
 
 @media print {
+    /* Hide non-print elements */
     .exclude-print {
+        display: none !important;
+    }
+
+    /* Remove padding in print */
+    .preview {
+        overflow-y: visible !important;
+        padding: 0 !important;
+        max-width: none !important;
+        position: static !important;
+    }
+
+    /* A4 wrapper styling */
+    .a4-wrapper {
+        min-height: auto !important;
+        max-height: none !important;
+        height: auto !important;
+        padding: 0 !important;
+    }
+
+    /* Page margins */
+    @page {
+        size: A4;
+        margin: 8mm;
+    }
+
+    /* Prevent page breaks in critical sections */
+    header,
+    .header-section {
+        page-break-after: avoid;
+        break-after: avoid;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .section-title {
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-top: 0.5em;
+    }
+
+    .work-experience-item,
+    .project-item,
+    .education-item,
+    .skill-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin-bottom: 0.5em;
+    }
+
+    .content ul,
+    .key-achievements {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .content li {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin-bottom: 0.25em;
+    }
+
+    /* Hide horizontal rule in print */
+    hr {
         display: none;
     }
 
-    .rm-padding-print {
-        padding: 0;
+    /* Remove sticky positioning in print */
+    .sticky {
+        position: static !important;
+        top: auto !important;
     }
 
-    @page {
-        size: A4;
-        margin: 10mm;
+    /* Ensure grid works in print */
+    .grid {
+        display: grid !important;
     }
 
-    .preview {
-        overflow-y: visible !important;
+    /* Remove hover effects in print */
+    .editable:hover,
+    button:hover {
+        background: none !important;
     }
 
+    /* Footer watermark */
     .preview::after {
         content: "Created using https://atsresume.vercel.app/";
         position: fixed;
         bottom: 0;
         right: 0;
         opacity: 0.2;
-        font-size: small;
+        font-size: 0.7em;
         text-align: center;
         z-index: -1;
+    }
+
+    /* Print-specific font optimizations */
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    /* Ensure colors print correctly */
+    .name,
+    .profession,
+    .section-title {
+        color: #000 !important;
+    }
+
+    /* Remove background colors in print */
+    button,
+    input,
+    textarea {
+        background: white !important;
+        border: 1px solid #ccc !important;
+    }
+
+    /* Remove form elements in print */
+    form,
+    .form-controls {
+        display: none !important;
     }
 }

@@ -1,22 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const A4PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const alertA4Size = () => {
-    const preview = document.querySelector(".preview");
-    if (!preview) return;
-    
-    const previewHeight = preview.offsetHeight;
-    if (previewHeight > 1122) {
-      alert("A4 size exceeded");
-    }
-  };
-
-  useEffect(() => {
-    alertA4Size();
-  }, []);
-
   return (
-    <div className="w-8.5in">
+    <div className="w-8.5in min-h-[11in] max-h-[11in] a4-wrapper">
       {children}
     </div>
   );
