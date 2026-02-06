@@ -7,28 +7,38 @@ interface PDFLeftSideProps {
 }
 
 const PDFLeftSide = ({ resumeData, sectionVisibility }: PDFLeftSideProps) => {
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    if (dateStr.toLowerCase() === 'current' || date.toString() === 'Invalid Date') {
+      return 'Present';
+    }
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+  };
+
   const styles = StyleSheet.create({
     section: {
-      marginBottom: 12,
+      marginBottom: 10,
       pageBreakAvoid: false,
     },
     sectionTitle: {
-      fontSize: 14,
+      fontSize: 12,
       fontWeight: 'bold',
-      marginBottom: 6,
+      marginBottom: 5,
       borderBottomWidth: 2,
       borderBottomColor: '#d1d5db',
     },
     content: {
-      fontSize: 12,
-      marginBottom: 4,
+      fontSize: 10,
+      marginBottom: 3,
       lineHeight: 1.4,
     },
     bold: {
       fontWeight: 'bold',
     },
     item: {
-      marginBottom: 6,
+      marginBottom: 5,
     },
   });
 
@@ -48,7 +58,7 @@ const PDFLeftSide = ({ resumeData, sectionVisibility }: PDFLeftSideProps) => {
             <View key={index} style={styles.item}>
               <Text style={[styles.content, styles.bold]}>{item.degree}</Text>
               <Text style={styles.content}>{item.school}</Text>
-              <Text style={styles.content}>{item.startYear} - {item.endYear}</Text>
+              <Text style={styles.content}>{formatDate(item.startYear)} — {formatDate(item.endYear)}</Text>
             </View>
           ))}
         </View>

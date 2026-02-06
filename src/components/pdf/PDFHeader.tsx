@@ -5,49 +5,68 @@ const PDFHeader = ({ resumeData }: { resumeData: ResumeData }) => {
   const styles = StyleSheet.create({
     container: {
       marginBottom: 20,
+      alignItems: 'center',
     },
     name: {
-      fontSize: 24,
+      fontSize: 20,
       fontWeight: 'bold',
-      marginBottom: 5,
+      marginBottom: 4,
     },
     profession: {
-      fontSize: 16,
-      marginBottom: 8,
+      fontSize: 14,
+      marginBottom: 6,
       color: '#333',
     },
     contact: {
-      fontSize: 12,
+      fontSize: 10,
       color: '#666',
+      marginBottom: 8,
+    },
+    socialMedia: {
+      fontSize: 5,
+      color: '#666',
+    },
+    socialMediaContainer: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      gap: 10,
+      marginTop: 2,
+    },
+    socialMediaItem: {
+      marginBottom: 2,
+      color: '#666',
+      fontSize: 8,
     },
     image: {
       width: 60,
       height: 60,
       borderRadius: 30,
-      marginRight: 15,
-    },
-    row: {
-      flexDirection: 'row',
-      alignItems: 'center',
+      marginBottom: 8,
     },
   });
 
   return (
     <View style={styles.container}>
-      <View style={styles.row}>
-        {resumeData.profilePicture && (
-          <Image src={resumeData.profilePicture} style={styles.image} />
-        )}
-        <View>
-          <Text style={styles.name}>{resumeData.name}</Text>
-          <Text style={styles.profession}>{resumeData.position}</Text>
-          <Text style={styles.contact}>
-            {resumeData.email && `${resumeData.email} | `}
-            {resumeData.contactInformation && `${resumeData.contactInformation} | `}
-            {resumeData.address}
-          </Text>
+      {resumeData.profilePicture && (
+        <Image src={resumeData.profilePicture} style={styles.image} />
+      )}
+      <Text style={styles.name}>{resumeData.name}</Text>
+      <Text style={styles.profession}>{resumeData.position}</Text>
+      <Text style={styles.contact}>
+        {resumeData.email && `${resumeData.email} | `}
+        {resumeData.contactInformation && `${resumeData.contactInformation} | `}
+        {resumeData.address}
+      </Text>
+      {resumeData.socialMedia && resumeData.socialMedia.length > 0 && (
+        <View style={styles.socialMediaContainer}>
+          {resumeData.socialMedia.map((social, index) => (
+            <Text key={index} style={styles.socialMediaItem}>
+              {social.socialMedia}: {social.link}
+            </Text>
+          ))}
         </View>
-      </View>
+      )}
     </View>
   );
 };

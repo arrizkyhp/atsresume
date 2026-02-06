@@ -7,39 +7,45 @@ interface PDFRightSideProps {
 }
 
 const PDFRightSide = ({ resumeData, sectionVisibility }: PDFRightSideProps) => {
+  const formatDate = (dateStr: string) => {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    if (dateStr.toLowerCase() === 'current' || date.toString() === 'Invalid Date') {
+      return 'Present';
+    }
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+  };
+
   const styles = StyleSheet.create({
     section: {
-      marginBottom: 12,
+      marginBottom: 10,
     },
     sectionTitle: {
-      fontSize: 14,
+      fontSize: 12,
       fontWeight: 'bold',
-      marginBottom: 6,
+      marginBottom: 5,
       borderBottomWidth: 2,
       borderBottomColor: '#d1d5db',
     },
     content: {
-      fontSize: 12,
-      marginBottom: 4,
+      fontSize: 10,
+      marginBottom: 3,
       lineHeight: 1.4,
     },
     bold: {
       fontWeight: 'bold',
     },
     item: {
-      marginBottom: 10,
+      marginBottom: 8,
     },
     list: {
-      paddingLeft: 16,
+      paddingLeft: 14,
     },
     listItem: {
-      marginBottom: 3,
+      marginBottom: 2,
     },
   });
-
-  const formatDate = (startYear: string, endYear: string) => {
-    return `${startYear} - ${endYear}`;
-  };
 
   return (
     <View>
@@ -50,7 +56,7 @@ const PDFRightSide = ({ resumeData, sectionVisibility }: PDFRightSideProps) => {
             <View key={index} style={styles.item}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={[styles.content, styles.bold]}>{item.company}</Text>
-                <Text style={styles.content}>{formatDate(item.startYear, item.endYear)}</Text>
+                <Text style={styles.content}>{formatDate(item.startYear)} — {formatDate(item.endYear)}</Text>
               </View>
               <Text style={styles.content}>{item.position}</Text>
               {item.description && <Text style={styles.content}>{item.description}</Text>}
@@ -77,7 +83,7 @@ const PDFRightSide = ({ resumeData, sectionVisibility }: PDFRightSideProps) => {
             <View key={index} style={styles.item}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text style={[styles.content, styles.bold]}>{item.name}</Text>
-                <Text style={styles.content}>{formatDate(item.startYear, item.endYear)}</Text>
+                <Text style={styles.content}>{formatDate(item.startYear)} — {formatDate(item.endYear)}</Text>
               </View>
               {item.link && <Text style={styles.content}>{item.link}</Text>}
               {item.description && <Text style={styles.content}>{item.description}</Text>}
