@@ -51,14 +51,21 @@ const ResumePDF = ({ resumeData, sectionVisibility, layoutMode }: ResumePDFProps
     <Document>
       <Page size="A4" style={styles.page}>
         <PDFHeader resumeData={resumeData} />
-        <View style={getLayoutStyle()}>
-          <View style={styles.leftColumn}>
+        {layoutMode === 'full-width' ? (
+          <>
             <PDFLeftSide resumeData={resumeData} sectionVisibility={sectionVisibility} />
-          </View>
-          <View style={styles.rightColumn}>
             <PDFRightSide resumeData={resumeData} sectionVisibility={sectionVisibility} />
+          </>
+        ) : (
+          <View style={getLayoutStyle()}>
+            <View style={styles.leftColumn}>
+              <PDFLeftSide resumeData={resumeData} sectionVisibility={sectionVisibility} />
+            </View>
+            <View style={styles.rightColumn}>
+              <PDFRightSide resumeData={resumeData} sectionVisibility={sectionVisibility} />
+            </View>
           </View>
-        </View>
+        )}
       </Page>
     </Document>
   );
