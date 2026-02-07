@@ -29,6 +29,7 @@ const LeftSide: React.FC<{ resumeData: any; sectionVisibility: Record<string, bo
                 endYear={item.endYear}
                 id={`education-start-end-date`}
               />
+              {item.description && <p className="sub-content">GPA: {item.description}</p>}
             </div>
           ))}
         </div>

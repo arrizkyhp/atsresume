@@ -13,8 +13,7 @@ const PDFRightSide = ({ resumeData, sectionVisibility }: PDFRightSideProps) => {
     if (dateStr.toLowerCase() === 'current' || date.toString() === 'Invalid Date') {
       return 'Present';
     }
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+    return date.getFullYear().toString();
   };
 
   const styles = StyleSheet.create({

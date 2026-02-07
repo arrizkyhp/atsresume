@@ -8,6 +8,7 @@ export interface Education {
   degree: string;
   startYear: string;
   endYear: string;
+  description: string;
 }
 
 export interface WorkExperience {

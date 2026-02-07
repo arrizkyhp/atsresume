@@ -1,41 +1,41 @@
-import { StyleSheet, View, Text, Image } from '@react-pdf/renderer';
-import { ResumeData } from '../../types/resume';
+import { StyleSheet, View, Text, Image } from "@react-pdf/renderer";
+import { ResumeData } from "../../types/resume";
 
 const PDFHeader = ({ resumeData }: { resumeData: ResumeData }) => {
   const styles = StyleSheet.create({
     container: {
       marginBottom: 20,
-      alignItems: 'center',
+      alignItems: "center",
     },
     name: {
       fontSize: 20,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       marginBottom: 4,
     },
     profession: {
       fontSize: 14,
       marginBottom: 6,
-      color: '#333',
+      color: "#333",
     },
     contact: {
       fontSize: 10,
-      color: '#666',
-      marginBottom: 8,
+      color: "#666",
+      marginBottom: 2,
     },
     socialMedia: {
       fontSize: 5,
-      color: '#666',
+      color: "#666",
     },
     socialMediaContainer: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "center",
       gap: 10,
       marginTop: 2,
     },
     socialMediaItem: {
       marginBottom: 2,
-      color: '#666',
+      color: "#666",
       fontSize: 8,
     },
     image: {

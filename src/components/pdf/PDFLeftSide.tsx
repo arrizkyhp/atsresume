@@ -13,8 +13,7 @@ const PDFLeftSide = ({ resumeData, sectionVisibility }: PDFLeftSideProps) => {
     if (dateStr.toLowerCase() === 'current' || date.toString() === 'Invalid Date') {
       return 'Present';
     }
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    return `${months[date.getMonth()]} ${date.getFullYear()}`;
+    return date.getFullYear().toString();
   };
 
   const styles = StyleSheet.create({
@@ -59,6 +58,7 @@ const PDFLeftSide = ({ resumeData, sectionVisibility }: PDFLeftSideProps) => {
               <Text style={[styles.content, styles.bold]}>{item.degree}</Text>
               <Text style={styles.content}>{item.school}</Text>
               <Text style={styles.content}>{formatDate(item.startYear)} — {formatDate(item.endYear)}</Text>
+              {item.description && <Text style={styles.content}>GPA: {item.description}</Text>}
             </View>
           ))}
         </View>

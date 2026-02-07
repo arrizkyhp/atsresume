@@ -22,15 +22,15 @@ const DefaultResumeData = {
   summary:
     "Software Engineer based in Bandung, Indonesia. Passionate about crafting visually appealing and user-friendly web experiences with a strong focus on UX. Interested in code, design, and interactive systems. Regularly utilizing AI-assisted development tools to enhance efficiency, speed up development cycles, and maintain high code quality.",
 
-    education: [
-      {
-        school: "Universitas Komputer Indonesia",
-        degree: "Bachelor’s Degree in Information Systems",
-        startYear: "2015-01-01",
-        endYear: "2019-12-31",
-        description: "3.65"
-      }
-    ],
+  education: [
+    {
+      school: "Universitas Komputer Indonesia",
+      degree: "Bachelor’s Degree in Information Systems",
+      startYear: "2015-01-01",
+      endYear: "2019-12-31",
+      description: "3.65",
+    },
+  ],
 
   workExperience: [
     {
@@ -101,7 +101,10 @@ const DefaultResumeData = {
       title: "Technical Skills",
       skills: [
         "JavaScript",
+        "TypeScript",
         "Next.js",
+        "jQuery",
+        "Python",
         "React",
         "TailwindCSS",
         "Material UI",
@@ -111,7 +114,6 @@ const DefaultResumeData = {
         "Vercel",
         "TeamCity",
         "Laravel",
-        "jQuery",
       ],
     },
   ],
@@ -121,12 +123,14 @@ const DefaultResumeData = {
   certifications: [],
 
   tools: [
-    "WebStorm",
-    "VSCode + Cline",
+    "Zed",
+    "GLM (Z.ai)",
+    "Open Code",
+    "VSCode",
     "Figma",
     "Adobe XD",
     "Postman",
-    "Adobe Photoshop"
+    "Adobe Photoshop",
   ],
 };
 
