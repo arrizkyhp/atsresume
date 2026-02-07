@@ -1,146 +1,342 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
-    
-    body {
-        @apply font-[sans-serif];
-    }
+  body {
+    font-family: sans-serif;
+  }
 
-    ::-webkit-scrollbar {
-        @apply w-2.5 h-2.5;
-    }
+  ::-webkit-scrollbar {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
 
-    ::-webkit-scrollbar-track {
-        @apply bg-gray-200;
-    }
+  ::-webkit-scrollbar-track {
+    background-color: rgb(229 231 235);
+  }
 
-    ::-webkit-scrollbar-thumb {
-        @apply bg-fuchsia-600;
-    }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(192 38 211);
+  }
 
-    ::-webkit-scrollbar-thumb:hover {
-        @apply bg-fuchsia-700;
-    }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(147 51 234);
+  }
 
-    textarea, input:focus {
-        @apply focus:outline-none;
-    }
+  textarea:focus, input:focus {
+    outline: none;
+  }
 
-    .ul-padding{
-        padding-inline-start: 0.9rem;
-    }
+  .ul-padding {
+    padding-inline-start: 0.9rem;
+  }
 
-    .ul-padding-none{
-        padding-inline-start: 0;
-    }
+  .ul-padding-none {
+    padding-inline-start: 0;
+  }
 }
 
-@layer components{
-    .pi{
-        @apply p-2 mb-2 text-black bg-white rounded text-[0.9rem];
-    }
+@layer components {
+  .pi {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
 
-    .profileInput{
-        @apply pi file:border-0 file:bg-fuchsia-500 file:text-white file:rounded-sm;
-    }
+  .profileInput {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
 
-    .flex-col-gap-2{
-        @apply flex flex-col gap-2;
-    }
+  .profileInput input[type="file"] {
+    border: 0;
+    background-color: rgb(217 70 239);
+    color: white;
+    border-radius: 0.125rem;
+  }
 
-    .flex-wrap-gap-2{
-        @apply flex flex-wrap gap-2;
-    }
+  .flex-col-gap-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-    .other-input{
-        @apply p-2 mb-2 text-black bg-white rounded focus:placeholder-transparent;
-    }
+  .flex-wrap-gap-2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
-    .input-title{
-        @apply text-[1rem] text-white font-semibold;
-    }
+  .other-input {
+    padding: 0.5rem;
+    margin-bottom:  0.5rem;
+    color: black;
+    background-color: white;
+    border-radius: 0.25rem;
+    font-size: 0.9rem;
+  }
 
-    .f-col{
-        @apply flex flex-col;
-    }
+  .other-input:focus::placeholder {
+    color: transparent;
+  }
 
-    .grid-4{
-        @apply grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-4;
-    }
+  .input-title {
+    font-size: 1rem;
+    color: white;
+    font-weight: 600;
+  }
 
-    .editable{
-        @apply hover:bg-gray-100 hover:cursor-text outline-none;
-    }
+  .f-col {
+    display: flex;
+    flex-direction: column;
+  }
 
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .editable:hover {
+    background-color: rgb(243 244 246);
+    cursor: text;
+  }
+
+  .editable {
+    outline: none;
+  }
 }
 
-.name{
-    font-size: 20px;
-    font-weight: 700;
+.name {
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.profession{
-    font-size: 16px;
-    font-weight: 500;
+.profession {
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.contact{
-    font-size: 14px;
-    font-weight: 400;
+.contact {
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.social-media{
-    font-size: 12px;
-    font-weight: 400;
+.social-media {
+  font-size: 12px;
+  font-weight: 400;
 }
 
-.section-title{
-    font-size: 16px;
-    font-weight: 700;
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.content{
-    font-size: 14px;
-    font-weight: 400;
+.content {
+  font-size: 14px;
+  font-weight: 400;
 }
 
-.sub-content{
-    font-size: 12px;
-    font-weight: 400;
+.sub-content {
+  font-size: 12px;
+  font-weight: 400;
 }
 
-.i-bold{
-    font-weight: 700 !important;
+.i-bold {
+  font-weight: 700 !important;
 }
 
 @media print {
-    .exclude-print {
-        display: none;
-    }
+  /* Hide non-print elements */
+  .exclude-print {
+    display: none !important;
+  }
 
-    .rm-padding-print {
-        padding: 0;
-    }
+  /* Keep preview layout in print but ensure proper sizing */
+  .preview {
+    overflow-y: visible !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
 
-    @page {
-        size: A4;
-        margin: 10mm;
-    }
+  /* A4 wrapper - remove height constraint in print */
+  .a4-wrapper {
+    min-height: auto !important;
+    max-height: none !important;
+    height: auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
 
-    .preview {
-        overflow-y: visible !important;
-    }
+  /* Page margins - reduced for more space */
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
 
-    .preview::after {
-        content: "Created using https://atsresume.vercel.app/";
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        opacity: 0.2;
-        font-size: small;
-        text-align: center;
-        z-index: -1;
-    }
+  /* Prevent page breaks in critical areas */
+  header,
+  .header-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Prevent breaks at section titles */
+  .section-title {
+    page-break-before: avoid;
+    break-before: avoid;
+    page-break-after: avoid;
+    break-after: avoid;
+    margin-top: 0.3em;
+  }
+
+  /* Allow sections to flow naturally across pages */
+  .summary-section,
+  .education-section,
+  .skills-section,
+  .languages-section,
+  .certifications-section,
+  .work-experience-container,
+  .projects-container {
+    page-break-inside: auto;
+    break-inside: auto;
+    margin-bottom: 0.5em;
+  }
+
+  /* Keep individual work experience and project items together */
+  .work-experience-item,
+  .project-item {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 0.3em;
+  }
+
+  /* Allow education items to break */
+  .education-item {
+    page-break-inside: auto;
+    break-inside: auto;
+    margin-bottom: 0.3em;
+  }
+
+  /* Allow skill items to break */
+  .skill-item {
+    page-break-inside: auto;
+    break-inside: auto;
+    margin-bottom: 0.3em;
+  }
+
+  /* Allow breaks between sections */
+  .summary-section + .education-section,
+  .education-section + .skills-section,
+  .skills-section + .languages-section,
+  .languages-section + .certifications-section,
+  .certifications-section + .work-experience-container,
+  .projects-container {
+    page-break-before: auto;
+    break-before: auto;
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* Allow lists to flow naturally */
+  .content ul,
+  .key-achievements {
+    page-break-inside: auto;
+    break-inside: auto;
+  }
+
+  .content li {
+    page-break-inside: auto;
+    break-inside: auto;
+    margin-bottom: 0.2em;
+  }
+
+  /* Hide horizontal rule */
+  hr {
+    display: none;
+  }
+
+  /* Remove hover effects */
+  .editable:hover,
+  button:hover {
+    background: none !important;
+  }
+
+  /* Footer watermark */
+  .preview::after {
+    content: "Created using https://atsresume.vercel.app/";
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    opacity: 0.2;
+    font-size: 0.7em;
+    text-align: center;
+    z-index: -1;
+  }
+
+  /* Print-specific font optimizations */
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Ensure colors print correctly */
+  .name,
+  .profession,
+  .section-title {
+    color: #000 !important;
+  }
+
+  /* Remove background colors */
+  button,
+  input,
+  textarea {
+    background: white !important;
+    border: 1px solid #ccc !important;
+  }
+
+  /* Remove form elements in print */
+  form,
+  .form-controls,
+  .LayoutControlPanel,
+  .PrintControlPanel {
+    display: none !important;
+  }
+
+  /* Ensure grid works properly in print */
+  .grid {
+    display: grid !important;
+  }
+
+  /* For 3-column layout in print */
+  .grid-cols-3 > div:first-child,
+  .grid-cols-3 > div:nth-child(2) {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  
+  /* For 2-column layout in print */
+  .grid-cols-2 > div:first-child,
+  .grid-cols-2 > div:nth-child(2) {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* For full-width layout in print */
+  .grid-cols-1 > div:first-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
 }
